@@ -1,5 +1,8 @@
 #! /bin/bash
 
+n=$1
+i=1
+
 mkdir tarea1
 
 cd ./tarea1
@@ -8,4 +11,8 @@ mkdir genome annotation samples scripts results
 
 cd ./samples
 
-mkdir sample1 sample2 sample3 sample4
+while [ $i -le $n ]
+do
+mkdir sample$i
+((i++))
+done
