@@ -1,0 +1,11 @@
+#! /bin/bash
+
+mkdir tarea1
+
+cd ./tarea1
+
+mkdir genome annotation samples scripts results
+
+cd ./samples
+
+mkdir sample1 sample2 sample3 sample4
