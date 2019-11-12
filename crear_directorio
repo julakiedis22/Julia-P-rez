@@ -18,4 +18,8 @@ mkdir sample$i
 done
 
 hola
+<<<<<<< HEAD
 que tal
+=======
+calla
+>>>>>>> master
