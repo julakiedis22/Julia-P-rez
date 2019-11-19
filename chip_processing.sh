@@ -6,7 +6,7 @@ WD=$2
 NUMCHIP=$3
 SRACHIP=$4
 
-## Quality study and mapping
+## Quality study and mappingggggg
 
 if [ -e ${SRACHIP}_2.fastq ]
 then
