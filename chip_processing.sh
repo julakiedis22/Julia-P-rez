@@ -1,44 +1,72 @@
+#$ -S /bin/bash
+#$ -N chip_processingprueba
+#$ -V
+#$ -cwd
+#$ -j yes
+#$ -o chip_processingprueba
+
 #!bin/bash
 ## Reading input parameters
 
-SAMPLE_ID=$1
+I=$1
 WD=$2
 NUMCHIP=$3
-SRACHIP=$4
+NUMSAM=$4
+PROMOTER=$5
 
-## Quality study and mappingggggg
+## Quality study and mappinG
 
-if [ -e ${SRACHIP}_2.fastq ]
-then
-   fastqc ${SRACHIP}_1.fastq
-   fastqc ${SRACHIP}_2.fastq
+cd $WD/samples/chip/sample$I
 
-   bowtie2 -x ../../genome/index -1 ${SRACHIP}_1.fastq -2 ${SRACHIP}_2.fastq -S chip.sam
+
+if [ -e chip${I}_2.fastq ]
+   then
+      fastqc $WD/samples/chip/sample$I/chip${I}_1.fastq
+      fastqc $WD/samples/chip/sample$I/chip${I}_2.fastq
+
+      bowtie2 -x $WD/genome/index -1 $WD/samples/chip/sample$I/chip${I}_1.fastq -2 $WD/samples/chip/sample$I/chip${I}_2.fastq -S chip.sam
+
 else
-   fastqc ${SRACHIP}_1.fastq
 
-   bowtie2 -x ../../genome/index -U ${SRACHIP}_1.fastq -S chip.sam
+      fastqc $WD/samples/chip/sample$I/chip${I}.fastq
+
+      bowtie2 -x $WD/genome/index -U $WD/samples/chip/sample$I/chip${I}.fastq -S $WD/samples/chip/sample$I/chip.sam
 fi
-
 
 ##Generating the bam file 
 
-samtools view -@ 2 -S -b chip.sam > chip.bam
-rm chip.sam
-samtools sort chip.bam -o chip_sorted.bam
-rm chip.bam
-samtools index chip_sorted.bam
+cd $WD/samples/chip/sample$I
+
+samtools view -@ 2 -S -b $WD/samples/chip/sample$I/chip.sam > $WD/samples/chip/sample$I/chip.bam
+rm $WD/samples/chip/sample$I/chip.sam
+samtools sort $WD/samples/chip/sample$I/chip.bam -o $WD/samples/chip/sample$I/chip_sorted.bam
+rm $WD/samples/chip/sample$I/chip.bam
+samtools index $WD/samples/chip/sample$I/chip_sorted.bam
 
 
 ## Synchronization point through blackboards
 
-echo "sample${SAMPLE_ID} DONE" >> $WD/logs/blackboard
+echo "sample${SAMPLE_ID} of chip samples DONE" >> $WD/logs/blackboard
 
 DONE_SAMPLES=$(wc -l $WD/logs/blackboard | awk '{ print $1 }')
 
 if [ ${DONE_SAMPLES} -eq $NUMCHIP ]
+then
 
-echo "ALL FINISHED :)"
+echo "ALL CHIP SAMPLES FINISHED :)"
 
 fi
+
+if [ ${DONE_SAMPLES} -eq $NUMSAM ]
+then
+
+echo "ALL SAMPLES FINISHED :)"
+
+fi
+I=1
+while [ $I -le $NUMCHIP ]
+do
+   qsub -N call_peaks$I -o $WD/logs/call_peaks$I /home/julfer/tareas/tarea1/Julia-P-rez/call_peaks.sh $WD $PROMOTER $NUMCHIP
+   rm $WD/logs/blackboard
+done
 
