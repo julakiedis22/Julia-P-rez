@@ -75,7 +75,7 @@ the name of the parameter and ":". You will come across an error if you forget o
 You will find different messages to make sure that the processing is going fine. You can find how is everything going in the folder "logs"
 inside your working directory after doing the first "qsub", before this all the messages will appear in your terminal. 
 
-After doing           . Before starting the processing, you have to change the file "peak_processing.R" if you have more or less than 
+After            . Before starting the processing, you have to change the file "peak_processing.R" if you have more or less than 
 two files of .narrowPeak (more than 4 samples). 
 
  1)Case 1: more than 4 samples
@@ -86,7 +86,7 @@ two files of .narrowPeak (more than 4 samples).
  peaks3.
  3º Add the new peaks in your fuction intersect.
  
- 2) Case 2: only 2 samples (one narrow.Peak) 
+ 2)Case 2: only 2 samples (one narrow.Peak) 
  1º Delete the input.file.name2. 
  2º In the section called "reading peaks", delete the peaks2.
  3º Delete the fuction intersect. Do not do thes fuction. This is really important.
