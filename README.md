@@ -93,3 +93,4 @@ two files of .narrowPeak (more than 4 samples).
 
 In this two cases, you will also need to change the script "execute_scriptR.sh" adding the new args that you have or deleting the args
 that you do not use. 
+
