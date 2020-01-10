@@ -1,0 +1,29 @@
+working_directory: /home/julfer/tareas/tarea1/Julia-P-rez/LEC
+
+scripts_directory: /home/julfer/tareas/tarea1/Julia-P-rez
+
+copy_genome: NO
+
+copy_annotation: NO
+
+copy_samples: NO
+
+number_of_samples: 4
+
+number_of_chip: 2
+
+number_of_input: 2
+
+genome_accesion:  ftp://ftp.ensemblgenomes.org/pub/release-45/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+
+annotation_accesion: ftp://ftp.ensemblgenomes.org/pub/release-45/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.45.gtf.gz
+
+samplechip1: SRR5640847
+
+samplechip2: SRR5640848
+
+sampleinput1: SRR5640849
+
+sampleinput2: SRR5640850
+
+promoter_length: 1000

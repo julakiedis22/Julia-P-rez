@@ -8,9 +8,18 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-input.file.name1 <- args[[1]]
-input.file.name2 <- args[[2]]
-promoter.length <- as.numeric(args[[3]])
+working_directory <- args[[1]]
+input.file.name1 <- args[[2]]
+input.file.name2 <- args[[3]]
+promoter.length <- as.numeric(args[[4]])
+
+## Set working directory
+
+wd <- paste(working_directory, "/results/results_R", sep = "")
+
+setwd(dir = wd)
+
+## Downloading all packages
 
 library(ChIPseeker)
 library(TxDb.Athaliana.BioMart.plantsmart28)
@@ -39,9 +48,6 @@ peakanno <- annotatePeak(peak = peaks,
                               tssRegion=c(-promoter.length, promoter.length),
                               TxDb=anno)
 
-## Peaks in each chromosome
-
-covplot(peaks, weightCol="V5", title = "Peaks in each chromosome")
 
 ## Binding sites in specific regions of the genome
 
@@ -63,3 +69,38 @@ target_genes <- annotation_dataframe$geneId[annotation_dataframe$annotation == "
 
 write(x = target_genes, file="target_genes.txt")
 
+## GO terms enrichment
+
+gene.set <- read.table(file = "target_genes.txt", header = F, as.is = T)[[1]]
+length(gene.set)
+
+library(clusterProfiler)
+library(org.At.tair.db)
+
+ego <- enrichGO(gene = gene.set, OrgDb = org.At.tair.db, ont = "BP", pvalueCutoff = 0.05, qvalueCutoff = 0.01, universe = genes_names, keyType = "TAIR")
+ego.res <- as.data.frame(ego)
+head(ego.res)
+
+barplot(ego, showCategory=10)
+emapplot(ego, showCategory = 10)
+
+## KEGG enrichment
+
+
+kk <- enrichKEGG(gene = gene.set, organism = "ath", universe = genes_names)
+kk.res <- as.data.frame(kk)
+head(kk.res)
+
+library("pathview")
+
+my.universe <- rep(0,length(genes_names))
+names(my.universe) <- genes_names
+my.universe[gene.set] <- 1
+
+pathways <- kk.res$ID[1:3]
+
+my.first.pathway <- pathview(gene.data = my.universe, pathway.id = pathways[1], species = "ath", gene.idtype = "TAIR")
+
+my.second.pathway <- pathview(gene.data = my.universe, pathway.id = pathways[2], species = "ath", gene.idtype = "TAIR")
+
+my.third.pathwat <- pathview(gene.data = my.universe, pathway.id = pathways[3], species = "ath", gene.idtype = "TAIR")
