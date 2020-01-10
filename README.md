@@ -55,7 +55,7 @@ samples.
  In this case, you will also need to change the script "execute_scriptR.sh" adding the new args that you have or deleting the args that you
  do not use. You will need to change PipeChSq.sh and you will need to add new parameters in params.txt. 
 
-HOW WORKS
+HOW IT WORKS
 
 This program have 6 bash scripts and 2 R script. The only instruction that you have to execute is: "bash PipeChSq.sh params.txt". This 
 instruction will execute PipeChSq.sh. This script have the orders to create the working directory and copy/download the genome file, the
@@ -89,8 +89,8 @@ generated, including the 3 more significant KEGG pathways affected by the transc
 
 PARAMETERS
 
-You can find instructions in each scripts to understand how the processing has been done, but the only file you need to modify is the 
-one called "params.txt" that is specific for each analysis. Do not modify the name of the param only the information that is writing after
+You can find instructions in each scripts to understand how the processing has been done, but the only file you need to modify is the one 
+called "params.txt" that is specific for each analysis. Do not modify the name of the param only the information that is writing after
 the ":". Next, you can know the meaning of the params for you to understand how to change them:
 
 - working_directory: it is the path where you will save your results. You need to put the name of your specific folders. It is important 
