@@ -1,4 +1,4 @@
-working_directory: /home/julfer/tareas/tarea1/Julia-P-rez/LEC
+working_directory: /home/julfer/tareas/tarea1/LEC
 
 scripts_directory: /home/julfer/tareas/tarea1/Julia-P-rez
 

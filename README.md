@@ -47,10 +47,11 @@ samples.
  - This program only can be used for experiments with 1 or 2 replicas. If your experiment have more than 2 replicas, modify 
  peak_processing_onerep.R and peak_processing_tworep.R following the next instructions: 
 
-  1º Add both args and input file you have, adding new arguments. For example, if you have another .narrowPeak: add
-  input.file.name3 <- args[[4]].
-  2º In the section called "reading peaks", read as many files as input.file.name. For example, for input_file_name3, name another peaks3.
-  3º Add the new peaks in your fuction intersect.
+	1º Add both args and input file you have, adding new arguments. For example, if you have another .narrowPeak: add
+	input.file.name3 <- args[[4]].
+	2º In the section called "reading peaks", read as many files as input.file.name. For example, for input_file_name3, name another 
+	peaks3.
+	3º Add the new peaks in your fuction intersect.
 
  In this case, you will also need to change the script "execute_scriptR.sh" adding the new args that you have or deleting the args that you
  do not use. You will need to change PipeChSq.sh and you will need to add new parameters in params.txt. 
@@ -90,8 +91,9 @@ generated, including the 3 more significant KEGG pathways affected by the transc
 PARAMETERS
 
 You can find instructions in each scripts to understand how the processing has been done, but the only file you need to modify is the one 
-called "params.txt" that is specific for each analysis. Do not modify the name of the param only the information that is writing after
-the ":". Next, you can know the meaning of the params for you to understand how to change them:
+called "params.txt", that is in "test" folder, that is specific for each analysis. You can find an example in this folder (test) Do not 
+modify the name of the param only the information that is writing after the ":". Next, you can know the meaning of the params for you to 
+understand how to change them:
 
 - working_directory: it is the path where you will save your results. You need to put the name of your specific folders. It is important 
   to mention that the last folder in the path is the one that will be generated after starting the processing. 
