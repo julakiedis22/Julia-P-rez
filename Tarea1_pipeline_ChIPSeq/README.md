@@ -35,8 +35,7 @@ SAMPLES THAT CAN BE PROCESSED WITH THIS PROGRAM
 It is important to know what samples can be processed with this program and what you have to modify if this program can't process your 
 samples.
 
- - This program only can be used for experiments that have the same number of chip samples than input samples. You have to modify some 
- parameters of call_peaks.sh if you want to use this program for different conditions.
+ - This program only can be used for experiments that have the same number of chip samples than input samples. 
 
  - This program can process paired data and unpaired data
  
